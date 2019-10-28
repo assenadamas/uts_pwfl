@@ -1,7 +1,6 @@
 # Hasil UTS Pemrograman Web Framework Lanjut
 
-<strong>Nama  : Damas Fahmi Assena</strong><br>
-<strong>NIM   : 161240000500</strong>
+<img src="_db/assenadamas.png">
 
 # ===> Pembuatan Database :
 CREATE DATABASE IF NOT EXISTS `pwfl_uts`;
