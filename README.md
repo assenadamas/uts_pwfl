@@ -44,3 +44,26 @@ INSERT INTO `data_mahasiswa` (`id`, `nim`, `nama`, `jenis_kelamin`, `alamat`, `h
 ===> View database :
 SELECT * FROM data_mahasiswa;
 SELECT nim, nama, alamat FROM data_mahasiswa;
+
+===> Trigger database :
+DELIMITER $$
+CREATE TRIGGER `after_insert` AFTER INSERT ON `data_mahasiswa` FOR EACH ROW BEGIN
+  INSERT INTO LOG (ket, user, new_nim, new_nama, new_jenis_kelamin, new_alamat, new_hp)
+  VALUES (CONCAT('Insert data ke tabel contoh, id = ', NEW.id), USER(), NEW.nim, NEW.nama, NEW.jenis_kelamin, NEW.alamat, NEW.hp);
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `after_update` AFTER UPDATE ON `data_mahasiswa` FOR EACH ROW BEGIN
+  INSERT INTO LOG (ket, USER, new_nim, new_nama, new_jenis_kelamin, new_alamat, new_hp, old_nim, old_nama, old_jenis_kelamin, old_alamat, old_hp)
+  VALUES (CONCAT('Update data ke tabel contoh, id = ', NEW.id), USER(), NEW.nim, NEW.nama, NEW.jenis_kelamin, NEW.alamat, NEW.hp, old.nim, old.nama, old.jenis_kelamin, old.alamat, old.hp);
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_delete` BEFORE DELETE ON `data_mahasiswa` FOR EACH ROW BEGIN
+  INSERT INTO LOG (ket, USER, old_nim, old_nama, old_jenis_kelamin, old_alamat, old_hp)
+  VALUES (CONCAT('Delete data ke tabel contoh, id = ', OLD.id), USER(), old_nim, old_nama, old_jenis_kelamin, old_alamat, old_hp);
+END
+$$
+DELIMITER ;
