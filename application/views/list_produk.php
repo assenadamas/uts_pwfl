@@ -49,3 +49,16 @@
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
+
+<!-- DataTables JavaScript -->
+<script src="<?php echo base_url('assets/') ?>vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url('assets/') ?>vendor/datatablesplugins/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url('assets/') ?>vendor/datatablesresponsive/dataTables.responsive.js"></script>
+
+<script>
+$(document).ready(function() {
+	$('#myDataTable').DataTable({
+		responsive: true
+	});
+});
+</script>
